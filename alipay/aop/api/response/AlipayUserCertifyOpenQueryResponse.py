@@ -33,10 +33,12 @@ class AlipayUserCertifyOpenQueryResponse(AlipayResponse):
 
     @passed.setter
     def passed(self, value):
+        self._passed = list()
         if isinstance(value, list):
-            self._passed = list()
             for i in value:
                 self._passed.append(i)
+        elif isinstance(value, str):
+            self._passed.append(value)
 
     def parse_response_content(self, response_content):
         response = super(AlipayUserCertifyOpenQueryResponse, self).parse_response_content(response_content)
